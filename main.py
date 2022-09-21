@@ -36,7 +36,12 @@ def brute_force(brute_port):
 
 
 def check_availability():
-    res = sr1(IP(dst=target) / ICMP(), timeout=3)
+    res = None
+    try:
+        conf.verb = 0
+        res = sr1(IP(dst=target) / ICMP(), timeout=3)
+    except:
+        print("Error")
     if res is None:
         return False
     else:
